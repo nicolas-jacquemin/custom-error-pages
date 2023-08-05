@@ -1,0 +1,84 @@
+<html lang="en">
+
+<head>
+    <title>404 - Not Found</title>
+    <meta charset="utf-8">
+    <meta name="description" content="404 - Not Found">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no">
+</head>
+
+<body>
+    <div class="message">
+        <h1>404 | Page Not Found</h1>
+    </div>
+    <div class="corporation-message">
+        <a id="brand-name">
+            <h3></h3>
+        </a>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const brands = [
+                {
+                    name: "Monkey Radio",
+                    domains: [
+                        "monkeyradio.fr",
+                    ],
+                    urlRedirect: "https://monkeyradio.fr"
+                },
+                {
+                    name: "Nicolas Jacquemin",
+                    domains: [
+                        "nicolasjacquemin.com",
+                    ],
+                    urlRedirect: "https://nicolasjacquemin.com"
+                },
+                {
+                    name: "Nicojqn",
+                    domains: [
+                        "nicojqn.fr",
+                    ],
+                    urlRedirect: "https://nicojqn.fr"
+                }
+            ]
+            const brandName = document.querySelector('#brand-name > h3');
+            const brandUrl = document.querySelector('#brand-name');
+            try {
+                const brand = brands.find(brand => brand.domains.includes(window.location.hostname.split('.').slice(-2).join('.')));
+                brandName.innerHTML = brand.name;
+                brandUrl.setAttribute('href', brand.urlRedirect);
+            } catch (e) {
+                brandName.innerHTML = "Nicojqn";
+                brandUrl.setAttribute('href', "https://nicojqn.fr");
+            }
+        });
+    </script>
+</body>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200&display=swap');
+
+    body {
+        background-color: rgb(29, 29, 63);
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+        color: rgb(170, 170, 170);
+        font-family: 'Dosis', sans-serif;
+    }
+
+    .corporation-message {
+        position: absolute;
+        bottom: 0;
+        padding: 10px;
+        color: rgb(170, 170, 170);
+    }
+
+    .corporation-message > a {
+        color: rgb(170, 170, 170);
+    }
+</style>
+
+</html>
